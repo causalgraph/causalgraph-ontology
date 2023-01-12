@@ -40,8 +40,11 @@
 <!-- ABOUT THE PROJECT -->
 ## About the project
 
-causalgraph ontology - TEXT TEXT TEXT
+The causalgraph ontology defines the causal data model for the [causalgraph package](https://github.com/causalgraph/causalgraph). 
+The ontology defines essential components of a causal graph, like nodes and edges, in an RDF-compatible way. Edges are modeled as separate Resources to allow the addition of detailed information, like time lag for time series or confidence in the edge's existence, if learned by causal discovery algorithms.
 
+For custom use cases, the ontology is extendable by inheritance from the base components. 
+Custom ontologies that use or inherit from the causalgraph-ontolgy components will, upon import in [causalgraph](https://github.com/causalgraph/causalgraph), automatically be detected as causal information and are thus directly available for import, export, and visualization capabilities of  [causalgraph](https://github.com/causalgraph/causalgraph).
 
 <!-- DETAILED ONTO DOCS -->
 ## Detailed ontology documentation
