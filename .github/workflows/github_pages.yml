@@ -33,6 +33,7 @@ jobs:
         wget -q https://github.com/dgarijo/Widoco/releases/download/v1.4.13/widoco-1.4.13-jar-with-dependencies.jar -O widoco.jar
         java -jar widoco.jar -ontFile ../causalgraph.ttl -outFolder . -getOntologyMetadata -oops -htaccess -rewriteAll -webVowl -uniteSections -includeImportedOntologies -includeAnnotationProperties
         mv index-en.html index.html
+        rm widoco.jar
     - name: Setup Pages
       uses: actions/configure-pages@v2
     - name: Upload artifact
