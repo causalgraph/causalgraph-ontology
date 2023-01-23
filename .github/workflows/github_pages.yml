@@ -1,0 +1,46 @@
+
+name: GitHub Pages
+
+on:
+  push:
+    branches:
+     - 'main'
+     - 'init_main'
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  pages: write
+  id-token: write
+
+# Allow one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  onto_docs:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    - name: Create html files
+      run: |
+        mkdir -p public
+        cd public
+        wget -q https://github.com/dgarijo/Widoco/releases/download/v1.4.13/widoco-1.4.13-jar-with-dependencies.jar -O widoco.jar
+        java -jar widoco.jar -ontFile ../causalgraph.ttl -outFolder . -getOntologyMetadata -oops -htaccess -rewriteAll -webVowl -uniteSections -includeImportedOntologies -includeAnnotationProperties
+        mv index-en.html index.html
+        rm widoco.jar
+    - name: Setup Pages
+      uses: actions/configure-pages@v2
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v1
+      with:
+        name: github-pages
+        path: public/ # folder with artifacts
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v1
