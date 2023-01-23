@@ -112,7 +112,7 @@ Bibtex:
 
 <!-- MARKDOWN LINKS & IMAGES -->
 [iwu-shield]: https://img.shields.io/badge/Fraunhofer-IWU-179C7D?style=flat-square
-[pages-shield]: https://img.shields.io/github/actions/workflow/status/causalgraph/causalgraph-ontolog/github_pages.yml?label=GitHub%20pages&style=flat-square
+[pages-shield]: https://img.shields.io/github/actions/workflow/status/causalgraph/causalgraph-ontology/github_pages.yml?label=GitHub%20pages&style=flat-square
 
 
 
