@@ -10,7 +10,7 @@
 <http://iwu.fraunhofer.de/causalgraph> rdf:type owl:Ontology ;
                                         rdfs:comment "Causalgraph-ontology with basic concepts for CausalNodes and CausalEdges. Part of PyPi Package at https://pypi.org/project/causalgraph/"@en ;
                                         rdfs:label "causalgraph-ontology"@en ;
-                                        owl:versionInfo "0.12"@en .
+                                        owl:versionInfo "0.14"@en .
 
 #################################################################
 #    Object Properties
@@ -35,8 +35,10 @@ cg:hasCausalConnection rdf:type owl:ObjectProperty ;
 cg:hasCause rdf:type owl:ObjectProperty ;
             rdfs:subPropertyOf cg:hasCausalConnection ;
             owl:inverseOf cg:isCausing ;
+            rdf:type owl:FunctionalProperty ;
             rdfs:domain cg:CausalEdge ;
-            rdfs:range cg:CausalNode .
+            rdfs:range cg:CausalNode ;
+            rdfs:comment "A CausalEdge can only have a single 'cause' indicated via the functional 'hasCause' property."@en .
 
 
 ###  http://iwu.fraunhofer.de/causalgraph#hasComponent
@@ -55,22 +57,26 @@ cg:hasCreator rdf:type owl:ObjectProperty ;
 cg:hasEffect rdf:type owl:ObjectProperty ;
              rdfs:subPropertyOf cg:hasCausalConnection ;
              owl:inverseOf cg:isAffectedBy ;
+             rdf:type owl:FunctionalProperty ;
              rdfs:domain cg:CausalEdge ;
-             rdfs:range cg:CausalNode .
+             rdfs:range cg:CausalNode ;
+             rdfs:comment "A CausalEdge can only have a single 'effect' indicated via the functional 'hasEffect' property."@en .
 
 
 ###  http://iwu.fraunhofer.de/causalgraph#isAffectedBy
 cg:isAffectedBy rdf:type owl:ObjectProperty ;
                 rdfs:subPropertyOf cg:hasCausalConnection ;
                 rdfs:domain cg:CausalNode ;
-                rdfs:range cg:CausalEdge .
+                rdfs:range cg:CausalEdge ;
+                rdfs:comment "A CausalNode can be influenced by many  'causes'  indicated via different CausalEdges pointing toward a CausalNode. All Edges influencing the CausalNode are gathered via the 'isAffectedBy' property."@en .
 
 
 ###  http://iwu.fraunhofer.de/causalgraph#isCausing
 cg:isCausing rdf:type owl:ObjectProperty ;
-              rdfs:subPropertyOf cg:hasCausalConnection ;
-              rdfs:domain cg:CausalNode ;
-              rdfs:range cg:CausalEdge .
+             rdfs:subPropertyOf cg:hasCausalConnection ;
+             rdfs:domain cg:CausalNode ;
+             rdfs:range cg:CausalEdge ;
+             rdfs:comment "A CausalNode can influence many  'effects'  indicated via different CausalEdges being caused by a CausalNode. All Edges influenced from the CausalNode are gathered via the 'isCausing' property."@en .
 
 
 #################################################################
